@@ -1,0 +1,22 @@
+{
+  "name": "decaying-accumulator",
+  "version": "0.0.0",
+  "description": "Outputs a number beween [-1, 1] which tends toward 0 over time but can be nudged",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js config=decaying-accmulator/test/intern"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:begriffs/decaying-accmulator.git"
+  },
+  "keywords": [
+    "bar",
+    "animated",
+    "number",
+    "vu",
+    "meter"
+  ],
+  "author": "Joe Nelson",
+  "license": "MIT"
+}
