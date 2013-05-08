@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git@github.com:begriffs/decaying-accmulator.git"
   },
+  "devDependencies": {
+    "amdefine": "~0.0.2",
+    "mocha": "~1.2.2"
+  },
   "keywords": [
     "bar",
     "animated",

@@ -15,5 +15,6 @@
   "quotmark": "single",
   "trailing": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "globals": { "define": false, "require": false, "module": false }
 }
