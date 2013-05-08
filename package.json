@@ -11,8 +11,9 @@
     "url": "git@github.com:begriffs/decaying-accumulator.git"
   },
   "devDependencies": {
-    "amdefine": "~0.0.2",
-    "mocha": "~1.2.2"
+    "amdefine": "~0.0.4",
+    "jshint": "~1.1.0",
+    "mocha": "~1.9.0"
   },
   "keywords": [
     "bar",
