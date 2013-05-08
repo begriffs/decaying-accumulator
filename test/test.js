@@ -3,21 +3,23 @@ var DecayingAccumulator = require('../DecayingAccumulator'),
 
 describe('DecayingAccumulator', function(){
   describe('#currentValue()', function(){
-    var dac;
-    beforeEach(function() {
-      dac = new DecayingAccumulator();
-    });
-    it('should start at zero', function() {
-      assert.equal(dac.currentValue(), 0);
-    });
-    it('the first vote counts fully', function() {
-      dac.nudge(1);
-      assert.equal(dac.currentValue(), 1);
-    });
-    it('two initial votes count as one', function() {
-      dac.nudge(1);
-      dac.nudge(1);
-      assert.equal(dac.currentValue(), 1);
+    context('when called initially', function() {
+      var dac;
+      beforeEach(function() {
+        dac = new DecayingAccumulator();
+      });
+      it('should start at zero', function() {
+        assert.equal(dac.currentValue(), 0);
+      });
+      it('the first vote counts fully', function() {
+        dac.nudge(1);
+        assert.equal(dac.currentValue(), 1);
+      });
+      it('two initial votes count as one', function() {
+        dac.nudge(1);
+        dac.nudge(1);
+        assert.equal(dac.currentValue(), 1);
+      });
     });
   });
 });
