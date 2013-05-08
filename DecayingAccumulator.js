@@ -14,7 +14,7 @@ define(function () {
 
     this.nudge = function (value) {
       this.val += value;
-      this.maxValueSeen = Math.max(this.maxValueSeen, this.val);
+      this.maxValueSeen = Math.max(this.maxValueSeen, Math.abs(this.val));
     };
   }
 

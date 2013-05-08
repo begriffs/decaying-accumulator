@@ -15,9 +15,33 @@ describe('DecayingAccumulator', function(){
         dac.nudge(1);
         assert.equal(dac.currentValue(), 1);
       });
-      it('two initial votes count as one', function() {
+      it('two votes count as one', function() {
         dac.nudge(1);
         dac.nudge(1);
+        assert.equal(dac.currentValue(), 1);
+      });
+      it('the first downvote counts fully', function() {
+        dac.nudge(-1);
+        assert.equal(dac.currentValue(), -1);
+      });
+      it('two downvotes count as one', function() {
+        dac.nudge(-1);
+        dac.nudge(-1);
+        assert.equal(dac.currentValue(), -1);
+      });
+      it('conflicting votes cancel', function() {
+        dac.nudge(1);
+        dac.nudge(-1);
+        assert.equal(dac.currentValue(), 0);
+      });
+      it('a large vote rescales the axis', function() {
+        dac.nudge(2);
+        dac.nudge(-1);
+        assert.equal(dac.currentValue(), 0.5);
+      });
+      it('a large internal vote does not rescale', function() {
+        dac.nudge(-1);
+        dac.nudge(2);
         assert.equal(dac.currentValue(), 1);
       });
     });
