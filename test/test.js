@@ -5,7 +5,7 @@ describe('DecayingAccumulator', function(){
   describe('#currentValue()', function(){
     var dac;
     beforeEach(function() {
-      dac = new DecayingAccumulator;
+      dac = new DecayingAccumulator();
     });
     it('should start at zero', function() {
       assert.equal(dac.currentValue(), 0);

@@ -16,5 +16,5 @@
   "trailing": true,
   "undef": true,
   "unused": true,
-  "globals": { "define": false, "require": false, "module": false }
+  "globals": { "require": false, "module": false, "describe": false, "it": false, "beforeEach": false }
 }
