@@ -13,10 +13,9 @@ define(function () {
   DecayingAccumulator.prototype.applyDecay = function () {
     var now = (new Date()).getTime();
     if(typeof this.lastNudgedAt === 'number') {
-      var dampen = Math.min(
-        Math.abs(this.val),
-        (now - this.lastNudgedAt) / this.decaySpeed
-      );
+      var dampen =
+        Math.abs(this.val) *
+        Math.min(1, (now - this.lastNudgedAt) / this.decaySpeed);
       this.val += (this.val > 0) ? -dampen : dampen;
     }
   };
