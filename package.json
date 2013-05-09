@@ -1,6 +1,6 @@
 {
   "name": "decaying-accumulator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Outputs a number beween [-1, 1] which tends toward 0 over time but can be nudged",
   "main": "index.js",
   "scripts": {
