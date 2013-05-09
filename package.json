@@ -12,8 +12,11 @@
   },
   "devDependencies": {
     "amdefine": "~0.0.4",
+    "underscore": "~1.4.4",
     "jshint": "~1.1.0",
-    "mocha": "~1.9.0"
+    "mocha": "~1.9.0",
+    "sinon": "~1.7.1",
+    "chai": "~1.6.0"
   },
   "keywords": [
     "bar",
