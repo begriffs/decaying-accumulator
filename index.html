@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cast your votes</title>
+    <script data-main="scripts/main" src="scripts/require.js"></script>
+    <style type="text/css">
+      button {
+        font-size: 16px;
+      }
+      meter {
+        width: 400px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demonstration of the
+      <a href="https://github.com/begriffs/decaying-accumulator">Decaying Accumulator</a>
+      module
+    </h1>
+    <div>
+      <meter min="-1" max="1" optimum="0"></meter>
+    </div>
+    <div>
+      <button id="no">NO</button>
+      <button id="yes">YES</button>
+    </div>
+  </body>
+</html>
