@@ -64,6 +64,13 @@ describe('DecayingAccumulator', function(){
         freezeTime(decayUnit);
         assert.equal(dac.currentValue(), 0);
       });
+      it('does not jitter at zero', function() {
+        dac.nudge(1);
+        freezeTime(decayUnit);
+        assert.equal(dac.currentValue(), 0);
+        freezeTime(decayUnit * 1.001);
+        assert.equal(dac.currentValue(), 0);
+      });
       it('decays downward fully even with more nudges', function() {
         dac.nudge(1);
         dac.nudge(1);

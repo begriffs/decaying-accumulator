@@ -12,7 +12,7 @@ define(function () {
 
   DecayingAccumulator.prototype.applyDecay = function () {
     var now = (new Date()).getTime();
-    if(typeof this.lastAltered === 'number') {
+    if(this.val !== 0 && typeof this.lastAltered === 'number') {
       var dampen =
         Math.abs(this.maxValueSeen) *
         Math.min(1, (now - this.lastAltered) / this.decaySpeed);
