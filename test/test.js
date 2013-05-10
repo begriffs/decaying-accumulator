@@ -133,6 +133,15 @@ describe('DecayingAccumulator', function(){
 
         assert.equal(dac.currentValue(), dac2.currentValue());
       });
+      it('does not change its rate of decay by vote frequency', function() {
+        var dac2 = new DecayingAccumulator(decayUnit);
+        dac.nudge(1);
+        dac2.nudge(1);
+        dac2.nudge(1);
+        dac2.nudge(1);
+        freezeTime(decayUnit / 2);
+        assert.equal(dac.currentValue(), dac2.currentValue());
+      });
     });
   });
 });
