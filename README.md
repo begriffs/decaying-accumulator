@@ -5,8 +5,19 @@ In applications such as realtime crowd voting or an audio VU meter, we
 want a number which spikes upward but decays to zero over time. This
 module captures exactly this, with no extra frills.
 
-Try [a demo](http://begriffs.github.io/decaying-accumulator/) which ties
-a graphical meter and voting buttons to this module.
+    // Create an accumulator that decays in one second
+    var DecayingAccumulator = require('DecayingAccumulator'),
+      dac = new DecayingAccumulator(1000);
+
+    dac.nudge(1);
+    // now dac.currentValue() === 1
+
+    ...
+
+    // some time later
+    // 0 <= dac.currentValue() < 1
+
+### Try [a demo](http://begriffs.github.io/decaying-accumulator/)
 
 ## Running tests locally
 
