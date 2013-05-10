@@ -12,12 +12,13 @@ define(function () {
 
   DecayingAccumulator.prototype.applyDecay = function () {
     var now = (new Date()).getTime();
-    if(typeof this.lastNudgedAt === 'number') {
+    if(typeof this.lastAltered === 'number') {
       var dampen =
-        Math.abs(this.val) *
-        Math.min(1, (now - this.lastNudgedAt) / this.decaySpeed);
+        Math.abs(this.maxValueSeen) *
+        Math.min(1, (now - this.lastAltered) / this.decaySpeed);
       this.val += (this.val > 0) ? -dampen : dampen;
     }
+    this.lastAltered = now;
   };
 
   DecayingAccumulator.prototype.currentValue = function () {
@@ -27,7 +28,6 @@ define(function () {
 
   DecayingAccumulator.prototype.nudge = function (value) {
     this.applyDecay();
-    this.lastNudgedAt = (new Date()).getTime();
     this.val += value;
     this.maxValueSeen = Math.max(this.maxValueSeen, Math.abs(this.val));
   };

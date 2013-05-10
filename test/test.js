@@ -113,6 +113,19 @@ describe('DecayingAccumulator', function(){
         dac.nudge(1);
         assert.equal(dac.currentValue(), 0.25);
       });
+      it('does not change its rate of decay when observed', function() {
+        var dac2 = new DecayingAccumulator(decayUnit);
+        dac.nudge(1);
+        dac2.nudge(1);
+        freezeTime(decayUnit / 4);
+        dac.currentValue();
+        freezeTime(decayUnit / 3);
+        dac.currentValue();
+        freezeTime(decayUnit / 2);
+        dac.currentValue();
+
+        assert.equal(dac.currentValue(), dac2.currentValue());
+      });
     });
   });
 });
