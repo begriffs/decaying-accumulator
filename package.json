@@ -1,8 +1,8 @@
 {
   "name": "decaying-accumulator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Outputs a number beween [-1, 1] which tends toward 0 over time but can be nudged",
-  "main": "index.js",
+  "main": "DecayingAccumulator.js",
   "scripts": {
     "test": "node index.js config=decaying-accumulator/test/intern"
   },
@@ -10,8 +10,10 @@
     "type": "git",
     "url": "git@github.com:begriffs/decaying-accumulator.git"
   },
+  "dependencies": {
+    "amdefine": "~0.0.4"
+  },
   "devDependencies": {
-    "amdefine": "~0.0.4",
     "underscore": "~1.4.4",
     "jshint": "~1.1.0",
     "mocha": "~1.9.0",
