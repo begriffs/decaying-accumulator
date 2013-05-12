@@ -4,10 +4,16 @@ if (typeof define !== 'function') {
 }
 
 define(function () {
-  function DecayingAccumulator(decaySpeed) {
-    this.maxValueSeen = 0;
-    this.val          = 0;
-    this.decaySpeed   = decaySpeed;
+  function DecayingAccumulator(opts) {
+    if(typeof opts === 'number') {
+      this.maxValueSeen = 0;
+      this.val          = 0;
+      this.decaySpeed   = opts;
+    } else {
+      this.maxValueSeen = opts.maxValueSeen;
+      this.val          = opts.val;
+      this.decaySpeed   = opts.decaySpeed;
+    }
   }
 
   DecayingAccumulator.prototype.applyDecay = function () {
