@@ -5,15 +5,10 @@ if (typeof define !== 'function') {
 
 define(function () {
   function DecayingAccumulator(opts) {
-    if(typeof opts === 'number') {
-      this.maxValueSeen = 0;
-      this.val          = 0;
-      this.decaySpeed   = opts;
-    } else {
-      this.maxValueSeen = opts.maxValueSeen;
-      this.val          = opts.val;
-      this.decaySpeed   = opts.decaySpeed;
-    }
+    opts = opts || {};
+    this.currentScale = opts.currentScale || 0;
+    this.val          = opts.val || 0;
+    this.decaySpeed   = opts.decaySpeed || 1000;
   }
 
   DecayingAccumulator.prototype.applyDecay = function () {
@@ -21,7 +16,7 @@ define(function () {
     if(typeof this.lastAltered === 'number') {
       var dampen =
         Math.min(Math.abs(this.val),
-          this.maxValueSeen *
+          this.currentScale *
             Math.min(1, (now - this.lastAltered) / this.decaySpeed)
         );
       this.val += (this.val > 0) ? -dampen : dampen;
@@ -31,13 +26,13 @@ define(function () {
 
   DecayingAccumulator.prototype.currentValue = function () {
     this.applyDecay();
-    return this.val / (this.maxValueSeen || 1);
+    return this.val / (this.currentScale || 1);
   };
 
   DecayingAccumulator.prototype.nudge = function (value) {
     this.applyDecay();
     this.val += value;
-    this.maxValueSeen = Math.max(this.maxValueSeen, Math.abs(this.val));
+    this.currentScale = Math.max(this.currentScale, Math.abs(this.val));
   };
 
   return DecayingAccumulator;

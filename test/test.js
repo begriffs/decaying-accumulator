@@ -15,7 +15,7 @@ describe('DecayingAccumulator', function(){
   describe('#currentValue()', function(){
     var dac, decayUnit = 1000;
     beforeEach(function() {
-      dac = new DecayingAccumulator(decayUnit);
+      dac = new DecayingAccumulator({decaySpeed: decayUnit});
       freezeTime(0);
     });
 
@@ -141,6 +141,19 @@ describe('DecayingAccumulator', function(){
         dac2.nudge(1);
         freezeTime(decayUnit / 2);
         assert.equal(dac.currentValue(), dac2.currentValue());
+      });
+    });
+
+    context('constructed with extended options', function() {
+      it('provides defaults if necessary', function() {
+        dac = new DecayingAccumulator();
+        dac.nudge(1);
+        assert.equal(dac.currentValue(), 1);
+      });
+      it('can override the initial scale', function() {
+        dac = new DecayingAccumulator({decaySpeed: decayUnit, currentScale: 4});
+        dac.nudge(1);
+        assert.equal(dac.currentValue(), 0.25);
       });
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "decaying-accumulator",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Outputs a number beween [-1, 1] which tends toward 0 over time but can be nudged",
   "main": "DecayingAccumulator.js",
   "scripts": {
@@ -21,11 +21,9 @@
     "chai": "~1.6.0"
   },
   "keywords": [
-    "bar",
-    "animated",
-    "number",
-    "vu",
-    "meter"
+    "bar",    "animated",
+    "number", "vu",
+    "meter",  "progress"
   ],
   "author": "Joe Nelson",
   "license": "MIT"
