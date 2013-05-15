@@ -5,7 +5,7 @@ define(
   ],
   function($, DecayingAccumulator) {
     $(function() {
-      var dac = new DecayingAccumulator(3000);
+      var dac = new DecayingAccumulator({decaySpeed: 3000});
       $('#yes').click(function () {
         dac.nudge(1);
       });
