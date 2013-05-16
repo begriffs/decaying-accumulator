@@ -11,14 +11,14 @@ var DecayingAccumulator = require('../DecayingAccumulator'),
     sinon.stub(Date.prototype, 'getTime', function() { return epoch; });
   };
 
-describe('DecayingAccumulator', function(){
-  describe('#currentValue()', function(){
-    var dac, decayUnit = 1000;
-    beforeEach(function() {
-      dac = new DecayingAccumulator({decaySpeed: decayUnit});
-      freezeTime(0);
-    });
+describe('DecayingAccumulator', function() {
+  var dac, decayUnit = 1000;
+  beforeEach(function() {
+    dac = new DecayingAccumulator({decaySpeed: decayUnit});
+    freezeTime(0);
+  });
 
+  describe('#currentValue()', function() {
     context('when called initially', function() {
       it('should start at zero', function() {
         assert.equal(dac.currentValue(), 0);
@@ -154,6 +154,38 @@ describe('DecayingAccumulator', function(){
         dac = new DecayingAccumulator({decaySpeed: decayUnit, currentScale: 4});
         dac.nudge(1);
         assert.equal(dac.currentValue(), 0.25);
+      });
+    });
+  });
+
+  describe('#nudge()', function() {
+    context('cooldown', function() {
+      beforeEach(function() {
+        dac = new DecayingAccumulator({
+          decaySpeed: decayUnit,
+          cooldownSpeed: decayUnit * 3
+        });
+      });
+      it('regains full strength after enough inactivity', function() {
+        dac.nudge(2);
+        freezeTime(decayUnit * 3);
+        dac.nudge(1);
+        assert.equal(dac.currentValue(), 1);
+      });
+
+      context('shorter than decay time', function() {
+        beforeEach(function() {
+          dac = new DecayingAccumulator({
+            decaySpeed: decayUnit,
+            cooldownSpeed: decayUnit / 2
+          });
+        });
+        it('does not cause values greater than one', function() {
+          dac.nudge(1);
+          freezeTime(decayUnit * 3 / 4);
+          dac.nudge(1);
+          assert.equal(dac.currentValue(), 1);
+        });
       });
     });
   });

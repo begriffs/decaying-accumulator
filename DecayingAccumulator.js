@@ -6,9 +6,11 @@ if (typeof define !== 'function') {
 define(function () {
   function DecayingAccumulator(opts) {
     opts = opts || {};
-    this.currentScale = opts.currentScale || 0;
-    this.val          = opts.val || 0;
-    this.decaySpeed   = opts.decaySpeed || 1000;
+    this.currentScale  = opts.currentScale || 0;
+    this.initialScale  = this.currentScale;
+    this.val           = opts.val || 0;
+    this.decaySpeed    = opts.decaySpeed || 1000;
+    this.cooldownSpeed = opts.cooldownSpeed || 0;
   }
 
   DecayingAccumulator.prototype.applyDecay = function () {
@@ -30,9 +32,20 @@ define(function () {
   };
 
   DecayingAccumulator.prototype.nudge = function (value) {
+    this.resensitizeScale();
     this.applyDecay();
     this.val += value;
     this.currentScale = Math.max(this.currentScale, Math.abs(this.val));
+    this.lastNudged = (new Date()).getTime();
+  };
+
+  DecayingAccumulator.prototype.resensitizeScale = function () {
+    var sensitivity, now = (new Date()).getTime();
+    if(this.cooldownSpeed > 0 && typeof this.lastNudged === "number") {
+      if(now - this.lastNudged >= this.cooldownSpeed) {
+        this.currentScale = this.initialScale;
+      }
+    }
   };
 
   return DecayingAccumulator;

@@ -24,6 +24,9 @@ specify an initial scale when constructing this class.
     new DecayingAccumulator({decaySpeed: 1000, currentScale: 4});
     // now currentValue() === 0.25 after nudge(1)
 
+If nudges have adjusted the scale you can have it reset after a cooldown
+period by providing a `cooldownSpeed` argument to the constructor.
+
 ### Try [a demo](http://begriffs.github.io/decaying-accumulator/)
 
 ## Running tests locally
