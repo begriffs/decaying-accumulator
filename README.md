@@ -5,6 +5,8 @@ In applications such as realtime crowd voting or an audio VU meter, we
 want a number which spikes upward but decays to zero over time. This
 module captures exactly this, with no extra frills.
 
+### Try [a demo](http://begriffs.github.io/decaying-accumulator/)
+
     // Create an accumulator that decays in one second
     var DecayingAccumulator = require('DecayingAccumulator'),
       dac = new DecayingAccumulator({decaySpeed: 1000});
@@ -26,8 +28,6 @@ specify an initial scale when constructing this class.
 
 If nudges have adjusted the scale you can have it reset after a cooldown
 period by providing a `cooldownSpeed` argument to the constructor.
-
-### Try [a demo](http://begriffs.github.io/decaying-accumulator/)
 
 ## Running tests locally
 
