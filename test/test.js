@@ -186,6 +186,15 @@ describe('DecayingAccumulator', function() {
           dac.nudge(1);
           assert.equal(dac.currentValue(), 1);
         });
+        it('does not cause a reverse movement', function() {
+          dac.nudge(1);
+          freezeTime(decayUnit / 10);
+          dac.nudge(2);
+          freezeTime(decayUnit * 3 / 4);
+          var decayed = dac.currentValue();
+          dac.nudge(-1);
+          expect(dac.currentValue()).to.be.below(decayed);
+        });
       });
     });
   });

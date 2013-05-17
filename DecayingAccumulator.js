@@ -43,6 +43,8 @@ define(function () {
     var now = (new Date()).getTime();
     if(this.cooldownSpeed > 0 && typeof this.lastNudged === 'number') {
       if(now - this.lastNudged >= this.cooldownSpeed) {
+        this.val *=
+          this.initialScale / (this.currentScale || this.initialScale || 1);
         this.currentScale = this.initialScale;
       }
     }
