@@ -40,8 +40,8 @@ define(function () {
   };
 
   DecayingAccumulator.prototype.resensitizeScale = function () {
-    var sensitivity, now = (new Date()).getTime();
-    if(this.cooldownSpeed > 0 && typeof this.lastNudged === "number") {
+    var now = (new Date()).getTime();
+    if(this.cooldownSpeed > 0 && typeof this.lastNudged === 'number') {
       if(now - this.lastNudged >= this.cooldownSpeed) {
         this.currentScale = this.initialScale;
       }
